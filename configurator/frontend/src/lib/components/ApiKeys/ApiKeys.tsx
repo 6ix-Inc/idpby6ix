@@ -60,7 +60,7 @@ const ApiKeysComponent: React.FC = () => {
   const header = (
     <div className="flex flex-row mb-5 items-start justify between">
       <div className="flex-grow flex text-secondaryText">
-        Jitsu supports many{" "}
+        6ix Dataflow supports many{" "}
         <Popover
           trigger="click"
           placement="bottom"
@@ -122,7 +122,7 @@ type KeyDocumentationProps = {
   displayDomainDropdown?: boolean
 }
 
-export const KeyDocumentation: React.FC<KeyDocumentationProps> = function ({ token, displayDomainDropdown = true }) {
+export const KeyDocumentation: React.FC<KeyDocumentationProps> = function({ token, displayDomainDropdown = true }) {
   const [segment, setSegmentEnabled] = useState<boolean>(false)
   const services = useServices()
   const staticDomains = getDomainsSelectionByEnv(services.features.environment)
@@ -132,12 +132,12 @@ export const KeyDocumentation: React.FC<KeyDocumentationProps> = function ({ tok
   )
   const [error, domains] = services.features.enableCustomDomains
     ? useLoader(async () => {
-        const result = await services.storageService.get("custom_domains", services.activeProject.id)
-        const customDomains = result?.domains?.map(domain => "https://" + domain.name) || []
-        const newDomains = [...customDomains, "https://t.jitsu.com"]
-        setSelectedDomain(newDomains[0])
-        return newDomains
-      })
+      const result = await services.storageService.get("custom_domains", services.activeProject.id)
+      const customDomains = result?.domains?.map(domain => "https://" + domain.name) || []
+      const newDomains = [...customDomains, "https://t.jitsu.com"]
+      setSelectedDomain(newDomains[0])
+      return newDomains
+    })
     : [null, staticDomains]
 
   if (error) {
